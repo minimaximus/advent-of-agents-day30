@@ -1,0 +1,29 @@
+{
+  "CANDY-SNK-KING": {
+    "candy_id": "CANDY-SNK-KING",
+    "guild_tier": "S-Tier (Legendary Porch Status)",
+    "street_trade_ratio": "1 bar trades for 6 Fun-Size chocolates or 15 gummy packs",
+    "kid_satisfaction_score": 98,
+    "melt_vulnerability": "Low (Heavy foil barrier holds up to 82F)",
+    "benchmark_target_cost_per_treat_usd": 0.50,
+    "guild_economic_note": "Any house spending >= $0.50 per treat qualifies for the Golden Pumpkin Medallion."
+  },
+  "CANDY-SOUR-FULL": {
+    "candy_id": "CANDY-SOUR-FULL",
+    "guild_tier": "A-Tier (Elite Crowd-Pleaser)",
+    "street_trade_ratio": "1 theater box trades for 4 Fun-Size bars",
+    "kid_satisfaction_score": 91,
+    "melt_vulnerability": "Very Low (Heat-resistant gelatin matrix)",
+    "benchmark_target_cost_per_treat_usd": 0.50,
+    "guild_economic_note": "Any house spending >= $0.50 per treat qualifies for the Golden Pumpkin Medallion."
+  },
+  "CANDY-CORN-BULK": {
+    "candy_id": "CANDY-CORN-BULK",
+    "guild_tier": "F-Tier (Pillowcase Deadweight)",
+    "street_trade_ratio": "20 packets trade for 1 Fun-Size bar (often discarded)",
+    "kid_satisfaction_score": 19,
+    "melt_vulnerability": "High (Sticky wax paper fuses in warm pillowcases)",
+    "benchmark_target_cost_per_treat_usd": 0.50,
+    "guild_economic_note": "Houses spending < $0.20 per treat are flagged as 'Stingy Cauldron' budget tier."
+  }
+}

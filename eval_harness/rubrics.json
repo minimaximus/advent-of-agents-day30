@@ -1,0 +1,74 @@
+[
+  {
+    "criterion_id": "spooky-vibe",
+    "name": "Halloween Tone & Spooky Vibe",
+    "criterion": "Evaluates whether the general tone of the audit report feels sufficiently Halloween-appropriate and festive.",
+    "rating_scale": {
+      "1": "Tone is completely unsuited for Halloween.",
+      "2": "Tone is dull and lacks seasonal spirit.",
+      "3": "Tone is acceptable.",
+      "4": "Tone is good and seasonal.",
+      "5": "Tone is perfectly suited for a Halloween Trick-or-Treat audit."
+    }
+  },
+  {
+    "criterion_id": "festive-formatting",
+    "name": "Executive Readability & Polish",
+    "criterion": "Measures how easy the report is to read and scan for a busy Trick-or-Treat route planner.",
+    "rating_scale": {
+      "1": "Extremely hard to read and understand.",
+      "2": "Hard to follow in several places.",
+      "3": "Average reading ease.",
+      "4": "Easy to read.",
+      "5": "Effortless to read, well-structured, and clearly formatted."
+    }
+  },
+  {
+    "criterion_id": "sugar-enthusiasm",
+    "name": "Deep Confectionery Passion",
+    "criterion": "Evaluates if the report contains deep, smart, and passionately insightful commentary about candy culture.",
+    "rating_scale": {
+      "1": "Zero passion or insight, just plain copying of data.",
+      "2": "Very shallow candy commentary.",
+      "3": "Average candy insights.",
+      "4": "Good, deep confectionery insights.",
+      "5": "Brilliant, outstanding, and deeply passionate candy sommelier insights."
+    }
+  },
+  {
+    "criterion_id": "candy-tier-breakdown",
+    "name": "Explicit Candy Tier & Wrapper Specs",
+    "criterion": "Explicitly states the exact house_id, primary candy name, size_class, wrapper_status, guild_tier, and street_trade_ratio in the body of the report.",
+    "rating_scale": {
+      "1": "Two or more core specs (house_id, size_class, wrapper_status, guild_tier, street_trade_ratio) are missing or incorrect.",
+      "2": "States most core specs, but omits wrapper_status or street_trade_ratio.",
+      "3": "States all core specs but buries them inside unstructured paragraphs.",
+      "4": "States all core specs accurately and clearly in the text, though not consolidated in a summary table.",
+      "5": "Prominently and accurately displays exact house_id, size_class, wrapper_status, guild_tier, and street_trade_ratio in both summary tables and text."
+    }
+  },
+  {
+    "criterion_id": "cost-per-treat",
+    "name": "Unit Cost-Per-Treat & $/Oz Math",
+    "criterion": "Derives and explicitly states both the mathematical Cost-Per-Treat (total_spend_usd / piece_count) and Cost-Per-Ounce (total_spend_usd / total_weight_oz), benchmarking the unit cost against the $0.50/treat Golden Pumpkin threshold.",
+    "rating_scale": {
+      "1": "Unit cost-per-treat and cost-per-ounce calculations are entirely omitted or mathematically incorrect (only raw total spend or piece count is stated).",
+      "2": "Alludes to candy generosity relative to total spend, but provides no numerical $/treat or $/oz figure or formula.",
+      "3": "Calculates either Cost-Per-Treat ($/piece) or Cost-Per-Ounce ($/oz), but omits the other or omits the derivation formula.",
+      "4": "Correctly computes both Cost-Per-Treat ($/piece) and Cost-Per-Ounce ($/oz) with clear division formulas, but does not benchmark against the $0.50/treat Golden Pumpkin threshold.",
+      "5": "Accurately calculates and highlights both exact Cost-Per-Treat ($/piece) and Cost-Per-Ounce ($/oz) with explicit derivation formulas and benchmarks against the $0.50/treat Golden Pumpkin threshold."
+    }
+  },
+  {
+    "criterion_id": "neighboring-allergen-risk",
+    "name": "Neighboring Bowl Cross-Contact Risk",
+    "criterion": "Inspects all neighboring_bowls on the porch alongside the primary candy bowl, explicitly identifying adjacent unwrapped allergens (peanuts, tree nuts) and evaluating cross-contact risk from shared tongs, nested troughs, or residue.",
+    "rating_scale": {
+      "1": "Only evaluates the primary candy bowl (main_bowl_allergens) and completely omits or ignores neighboring_bowls on the porch.",
+      "2": "Vaguely mentions that other bowls may exist on the porch without listing their contents or specific allergens.",
+      "3": "Mentions the neighboring bowl contents but fails to list the specific allergens (e.g., peanuts, tree nuts) or wrapper status.",
+      "4": "Identifies the neighboring bowls and their specific allergens, but provides only a brief mention of cross-contact mechanics.",
+      "5": "Thoroughly documents every neighboring bowl's location, contents, wrapper status, and specific allergens (peanuts/tree nuts), issuing an explicit Cross-Contamination Warning explaining why the porch is unsafe despite the primary bowl's peanut-free label."
+    }
+  }
+]

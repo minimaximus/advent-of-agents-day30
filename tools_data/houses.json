@@ -1,0 +1,71 @@
+{
+  "HOUSE-1031": {
+    "house_id": "HOUSE-1031",
+    "house_name": "The Addams Victorian Manor",
+    "street_address": "1031 Cemetery Lane",
+    "candy_id": "CANDY-SNK-KING",
+    "primary_candy_name": "King-Size Dark Chocolate Caramel Nougat Bars",
+    "size_class": "King-Size (2.0 oz bar)",
+    "wrapper_status": "Factory Sealed Individual Foil Wrappers",
+    "total_spend_usd": 36.00,
+    "piece_count": 40,
+    "total_weight_oz": 80.0,
+    "main_bowl_peanut_free_label": true,
+    "main_bowl_allergens": ["milk", "soy", "egg_whites"],
+    "porch_lighting_and_decor": "Full fog machine, animatronic butler, well-lit porch steps",
+    "neighboring_bowls": [
+      {
+        "bowl_location": "Adjacent wrought-iron side table (4 inches from main cauldron)",
+        "contents": "Homemade Unwrapped Peanut Butter Fudge & Crushed Walnut Brittle",
+        "wrapper_status": "Unwrapped / Open Dish (Shared Serving Tongs)",
+        "allergens": ["peanuts", "tree_nuts_walnut", "milk"]
+      }
+    ]
+  },
+  "HOUSE-666": {
+    "house_id": "HOUSE-666",
+    "house_name": "Hawthorn Hill Haunted Mansion",
+    "street_address": "666 Witchwood Drive",
+    "candy_id": "CANDY-SOUR-FULL",
+    "primary_candy_name": "Full-Size Neon Sour Gummy Worms & Berry Chews",
+    "size_class": "Full-Size Theater Box (3.5 oz)",
+    "wrapper_status": "Sealed Cardboard Theater Boxes",
+    "total_spend_usd": 45.00,
+    "piece_count": 60,
+    "total_weight_oz": 210.0,
+    "main_bowl_peanut_free_label": true,
+    "main_bowl_allergens": ["wheat_gluten"],
+    "porch_lighting_and_decor": "Strobe lightning, purple spotlights, dry ice cauldron",
+    "neighboring_bowls": [
+      {
+        "bowl_location": "Nested inside the same wide pumpkin trough (no divider)",
+        "contents": "Loose Unwrapped Roasted Salted Peanuts & Almond Bark Chunks",
+        "wrapper_status": "Completely Unwrapped (Powdery Peanut Dust Coating Trough)",
+        "allergens": ["peanuts", "tree_nuts_almond"]
+      }
+    ]
+  },
+  "HOUSE-404": {
+    "house_id": "HOUSE-404",
+    "house_name": "Elm Street Split-Level",
+    "street_address": "404 Nightmare Court",
+    "candy_id": "CANDY-CORN-BULK",
+    "primary_candy_name": "Bulk Autumn Candy Corn & Mystery Wax Chews",
+    "size_class": "Mini Loose Bulk (0.25 oz packet)",
+    "wrapper_status": "Twisted Wax Paper (Partially Unsealed)",
+    "total_spend_usd": 12.00,
+    "piece_count": 120,
+    "total_weight_oz": 30.0,
+    "main_bowl_peanut_free_label": true,
+    "main_bowl_allergens": ["sesame", "honey_glaze"],
+    "porch_lighting_and_decor": "Single flickering yellow porch bulb, plastic skeleton",
+    "neighboring_bowls": [
+      {
+        "bowl_location": "Overflow ceramic ghost bowl touching the main basket",
+        "contents": "Crushed Open-Wrapper Peanut Butter Cups & Hazelnut Wafers",
+        "wrapper_status": "Torn Wrappers with Melted Peanut Butter Residue on Rim",
+        "allergens": ["peanuts", "tree_nuts_hazelnut", "milk", "soy"]
+      }
+    ]
+  }
+}

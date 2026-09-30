@@ -1,0 +1,43 @@
+# Bytecode and cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environment and secrets
+.env
+*.local
+
+# Virtual environments
+.venv/
+env/
+venv/
+ENV/
+
+# ADK and IDE local state
+.adk/
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Evaluation output artifacts & temporary runs
+runs/hillclimb_*
+runs/aqua_report.json
+candy_auditor/hillclimb_*.evalset.json
+
+# Upstream archives
+autoraters.zip
+advent-of-agents-main/
+
+# Internal presenter scripts, slide decks, and authoring notes
+docs/KATA_SCRIPT.md
+docs/video-script.md
+docs/slides.html
+docs/slides.md
+evals-lab.txt
+.agent/
+
+# OS metadata
+.DS_Store
+Thumbs.db

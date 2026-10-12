@@ -35,6 +35,7 @@ docs/KATA_SCRIPT.md
 docs/video-script.md
 docs/slides.html
 docs/slides.md
+docs/*.png
 evals-lab.txt
 .agent/
 

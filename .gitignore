@@ -36,6 +36,8 @@ docs/video-script.md
 docs/slides.html
 docs/slides.md
 docs/*.png
+docs/*.jpg
+docs/architecture.html
 docs/*.pptx
 docs/generate_slides_pptx.py
 evals-lab.txt

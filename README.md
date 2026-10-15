@@ -58,3 +58,12 @@ tools_data/                 Halloween porch dataset (`houses.json`) and Guild tr
 eval_harness/               Gemini Agent Platform Golden-Dataset Gate (`run_hillclimb.py`), Judge rationales (`explain_criteria_results.py`), and AQuA runner (`run_aqua.py`)
 docs/LAB.md                 Step-by-step walkthrough of Pre-Deploy Golden Evals + Post-Deploy AQuA
 ```
+
+---
+
+## Resources
+
+- [AQuA: An Ambient Quality Agent That Diagnoses Your Production Agent](https://developers.googleblog.com/the-outer-loop-insights-first-an-ambient-quality-agent-that-diagnoses-your-production-agent/)
+- [Vertex AI GenAI Evaluation Service](https://cloud.google.com/vertex-ai/generative-ai/docs/models/evaluation-overview)
+- [ADK Documentation (`adk.dev`)](https://adk.dev/)
+

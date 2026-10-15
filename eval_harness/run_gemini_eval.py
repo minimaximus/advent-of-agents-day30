@@ -1,8 +1,8 @@
-"""GEAP Evaluation Runner for the Halloween Candy Bowl Auditor Kata.
+"""Gemini platform Evaluation Runner for the Halloween Candy Bowl Auditor Kata.
 
 Bridges ADK EvalSet traces (`candy_auditor/*.evalset.json`) and Vertex AI's GenAI
 Evaluation Service (`EvalTask`, `PointwiseMetric`, `PointwiseMetricPromptTemplate`).
-Supports `--dry-run` (to inspect compiled GEAP judge prompts), live cloud `EvalTask`
+Supports `--dry-run` (to inspect compiled Gemini platform judge prompts), live cloud `EvalTask`
 execution, and automatic local rubric grading fallback when running in `--fast` mode
 or without active Vertex AI cloud credentials.
 """
@@ -19,13 +19,13 @@ os.environ["GOOGLE_API_USE_MTLS"] = "never"
 os.environ["GOOGLE_API_USE_CLIENT_CERTIFICATE"] = "false"
 
 
-def _render_geap_pointwise_prompt(
+def _render_pointwise_prompt(
     criterion_name: str,
     criterion_desc: str,
     rating_scale: Dict[str, str],
     response_text: str,
 ) -> str:
-    """Renders the exact PointwiseMetricPromptTemplate format used by GEAP LLM-as-a-Judge."""
+    """Renders the exact PointwiseMetricPromptTemplate format used by Gemini platform LLM-as-a-Judge."""
     rubric_lines = "\n".join([f"  {k}: {v}" for k, v in sorted(rating_scale.items(), key=lambda x: int(x[0]))])
     return (
         "# Instruction\n"
@@ -134,8 +134,8 @@ def _grade_response_locally(eval_id: str, criterion_id: str, response_text: str)
     return (3.0, "Evaluated against rubric criteria.")
 
 
-class GeapEvalRunner:
-    """Orchestrates Vertex AI GenAI Evaluation Service (GEAP) calls for ADK evaluation traces."""
+class GeminiEvalRunner:
+    """Orchestrates Vertex AI GenAI Evaluation Service (Gemini platform) calls for ADK evaluation traces."""
 
     def __init__(
         self,
@@ -199,7 +199,7 @@ class GeapEvalRunner:
         location: str = "us-central1",
         fast_mode: bool = False,
     ) -> None:
-        """Executes k_passes of evaluation via Vertex AI GEAP EvalTask (or fast local rubric judge)."""
+        """Executes k_passes of evaluation via Vertex AI Gemini platform EvalTask (or fast local rubric judge)."""
         project_id = project or os.environ.get("GOOGLE_CLOUD_PROJECT")
         use_cloud = (not fast_mode) and bool(project_id)
 
@@ -227,7 +227,7 @@ class GeapEvalRunner:
                     [{"eval_id": r["eval_id"], "response": r["response"]} for r in self.traces]
                 )
                 for pass_idx in range(1, k_passes + 1):
-                    print(f"  ☁️  GEAP EvalTask pass {pass_idx}/{k_passes} on {len(eval_df)} house reports...")
+                    print(f"  ☁️  Gemini platform EvalTask pass {pass_idx}/{k_passes} on {len(eval_df)} house reports...")
                     task = EvalTask(
                         dataset=eval_df,
                         metrics=metrics,
@@ -257,7 +257,7 @@ class GeapEvalRunner:
                             )
                 return
             except Exception as e:
-                print(f"  ℹ️ Cloud GEAP EvalTask fallback ({e}); scoring with deterministic GEAP rubric judge...")
+                print(f"  ℹ️ Cloud EvalTask fallback ({e}); scoring with deterministic rubric judge...")
 
         # Fast / Offline Rubric Grading
         for pass_idx in range(1, k_passes + 1):
@@ -275,14 +275,14 @@ class GeapEvalRunner:
                     )
 
     def assemble_and_save_records(self, output_path: str, is_dry_run: bool = False) -> str:
-        """Assembles the compiled GEAP prompts and service responses into JSON."""
+        """Assembles the compiled Gemini platform prompts and service responses into JSON."""
         records = []
         for t in self.traces:
             eval_id = t["eval_id"]
             response_text = t["response"]
             for c in self.criteria:
                 cid = c["rubric_id"]
-                prompt_made = _render_geap_pointwise_prompt(
+                prompt_made = _render_pointwise_prompt(
                     criterion_name=c["name"],
                     criterion_desc=c["criterion_desc"],
                     rating_scale=c["rating_scale"],
@@ -307,10 +307,10 @@ class GeapEvalRunner:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="GEAP Pointwise Rubric Evaluation Runner.")
+    parser = argparse.ArgumentParser(description="Gemini platform Pointwise Rubric Evaluation Runner.")
     parser.add_argument("--traces", default="candy_auditor/hillclimb_houses.evalset.json")
     parser.add_argument("--rubric-file", default="eval_harness/rubrics.json")
-    parser.add_argument("--out", default="runs/baseline/geap_calls_and_responses.json")
+    parser.add_argument("--out", default="runs/baseline/eval_calls_and_responses.json")
     parser.add_argument("-k", "--k-passes", type=int, default=1)
     parser.add_argument("--experiment-name", default="halloween-candy-auditor")
     parser.add_argument("--dry-run", action="store_true")
@@ -326,7 +326,7 @@ def main() -> None:
             fast_mode=True,
         )
 
-    runner = GeapEvalRunner(
+    runner = GeminiEvalRunner(
         traces_path=args.traces,
         rubric_file_path=args.rubric_file,
     )
@@ -341,13 +341,13 @@ def main() -> None:
     if args.dry_run:
         with open(saved, "r", encoding="utf-8") as f:
             sample = json.load(f)[0]
-        print("\n🧪 === GEAP PointwiseMetricPromptTemplate Dry-Run Preview ===")
+        print("\n🧪 === Gemini platform PointwiseMetricPromptTemplate Dry-Run Preview ===")
         print(f"House ID:     {sample['eval_id']}")
         print(f"Criterion ID: {sample['criterion_id']} ({sample['criterion_name']})")
         print("-" * 72)
         print(sample["prompt_made_to_service"][:1200] + "\n... [truncated] ...")
         print("-" * 72)
-    print(f"✅ Saved GEAP evaluation records -> {saved}")
+    print(f"✅ Saved evaluation records -> {saved}")
 
 
 if __name__ == "__main__":

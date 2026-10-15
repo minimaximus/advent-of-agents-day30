@@ -26,7 +26,7 @@ aqua: ## Act III (Post-Deploy Continuous Alignment): Run AQuA 9-question session
 	python3 -m eval_harness.run_aqua
 
 dry-run: ## Preview the compiled PointwiseMetricPromptTemplate sent to the LLM Judge
-	python3 -m eval_harness.run_geap_eval --dry-run --out runs/dry_run/geap_prompt_preview.json
+	python3 -m eval_harness.run_gemini_eval --dry-run --out runs/dry_run/prompt_preview.json
 
 playground: ## Launch ADK Web UI to chat with candy_auditor and inspect EvalSet traces
 	adk web

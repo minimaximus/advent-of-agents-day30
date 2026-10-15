@@ -11,7 +11,7 @@ from eval_harness.utils import is_nan, load_eval_ratings_by_criterion
 
 
 def get_latest_hillclimb_file(runs_dir: str = "runs") -> Optional[str]:
-    """Finds the most recent hillclimb_X/geap_calls_and_responses_hillclimb_X.json file."""
+    """Finds the most recent hillclimb_X/eval_calls_and_responses_hillclimb_X.json file."""
     if not os.path.exists(runs_dir):
         return None
     max_idx = -1
@@ -20,7 +20,7 @@ def get_latest_hillclimb_file(runs_dir: str = "runs") -> Optional[str]:
         m = re.match(r"^hillclimb_(\d+)$", d)
         if m:
             idx = int(m.group(1))
-            candidate = os.path.join(runs_dir, d, f"geap_calls_and_responses_{d}.json")
+            candidate = os.path.join(runs_dir, d, f"eval_calls_and_responses_{d}.json")
             if os.path.exists(candidate) and idx > max_idx:
                 max_idx = idx
                 best_path = candidate
@@ -69,7 +69,7 @@ def main() -> None:
         description="Print detailed LLM judge explanations for failing Halloween houses."
     )
     parser.add_argument(
-        "--run_geap_eval_out",
+        "--eval_out",
         default=None,
         help="Path to eval calls and responses JSON (defaults to latest runs/hillclimb_X/...)",
     )
@@ -87,7 +87,7 @@ def main() -> None:
 
     args = parser.parse_args()
 
-    target_file = args.run_geap_eval_out or get_latest_hillclimb_file("runs")
+    target_file = args.eval_out or get_latest_hillclimb_file("runs")
     if not target_file or not os.path.exists(target_file):
         print(
             "❌ No hill-climbing run found yet! Run `make eval` or `make kata` first to generate baseline scores.",

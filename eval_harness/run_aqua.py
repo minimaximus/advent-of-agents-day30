@@ -88,8 +88,9 @@ def _call_gemini_json(prompt: str, fast_mode: bool = False) -> Optional[Dict[str
         )
         if resp and resp.text:
             return json.loads(resp.text)
-    except Exception:
-        pass
+    except Exception as exc:
+        if os.environ.get("AQUA_DEBUG"):
+            print(f"  {DIM}ℹ️ Gemini live call fallback: {exc}{RESET}")
     return None
 
 
@@ -344,11 +345,13 @@ def run_aqua_pipeline(
 
     # 3. Stage 3: Code-Anchored Root-Cause Diagnosis
     if show_rca:
-        print(f"\n🛠️  {BOLD}[Stage 3/3] Code-Anchored Root-Cause Diagnosis ({rca['target_file']}:{rca['line_number']}){RESET}")
+        target_file = rca.get("target_file", "candy_auditor/agent.py")
+        line_number = rca.get("line_number", 45)
+        print(f"\n🛠️  {BOLD}[Stage 3/3] Code-Anchored Root-Cause Diagnosis ({target_file}:{line_number}){RESET}")
         print("-" * 94)
         for idx, bullet in enumerate(rca.get("root_cause_summary", []), start=1):
             print(f"  {idx}. {bullet}")
-        print(f"\n  {BOLD}Suggested Patch ({rca['target_file']}:{rca['line_number']}) • Never Applied Automatically:{RESET}")
+        print(f"\n  {BOLD}Suggested Patch ({target_file}:{line_number}) • Never Applied Automatically:{RESET}")
         for line in rca.get("suggested_diff", "").splitlines():
             if line.startswith("+"):
                 print(f"    {GREEN}{line}{RESET}")

@@ -58,7 +58,7 @@ def format_markdown_table(headers: List[str], rows: List[List[Any]]) -> str:
 
 
 def load_eval_ratings_by_criterion(eval_output_path: str) -> Dict[str, Dict[str, Any]]:
-    """Loads a GEAP evaluation output file and groups flat rating records by criterion."""
+    """Loads a Gemini platform evaluation output file and groups flat rating records by criterion."""
     if not os.path.exists(eval_output_path):
         raise FileNotFoundError(f"Evaluation output file not found at {eval_output_path}")
 
@@ -93,7 +93,7 @@ def load_eval_ratings_by_criterion(eval_output_path: str) -> Dict[str, Dict[str,
             score = resp["score"]
             explanation = resp.get(
                 "explanation",
-                "No explanation returned by the GEAP evaluation service.",
+                "No explanation returned by the Gemini platform evaluation service.",
             )
             structured_data[criterion_id]["ratings"].append(
                 {

@@ -1,7 +1,7 @@
 """Hill-Climbing Evaluation & Build Gate Runner (`make eval` / `make hillclimb`).
 
 Runs the `candy_auditor` ADK agent across the target Halloween houses, grades the reports
-using GEAP Pointwise Rubric Autoraters, prints a unified Build Gate Scorecard table
+using Gemini platform Pointwise Rubric Autoraters, prints a unified Build Gate Scorecard table
 (comparing Fluff/Trap criteria vs. Reliable Target criteria), and enforces Mean >= 4.0.
 """
 
@@ -14,7 +14,7 @@ import statistics
 import sys
 
 from eval_harness.create_candy_evalset import build_candy_evalset
-from eval_harness.run_geap_eval import GeapEvalRunner
+from eval_harness.run_gemini_eval import GeminiEvalRunner
 
 
 def get_next_run_dir(runs_dir: str, base_name: str = "hillclimb") -> str:
@@ -31,7 +31,7 @@ def get_next_run_dir(runs_dir: str, base_name: str = "hillclimb") -> str:
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Run Halloween Candy Bowl Auditor Hill-Climbing & GEAP Gate."
+        description="Run Halloween Candy Bowl Auditor Hill-Climbing & Gemini platform Gate."
     )
     parser.add_argument("--houses-file", default="eval_harness/hillclimb_houses.txt")
     parser.add_argument("--rubrics-file", default="eval_harness/rubrics.json")
@@ -70,21 +70,21 @@ def main() -> None:
     ]
     gated_criteria = ["cost-per-treat", "neighboring-allergen-risk"]
 
-    print(f"\n☁️  [2/2] Grading reports with GEAP Pointwise Rubric Autoraters...")
-    geap_runner = GeapEvalRunner(
+    print(f"\n☁️  [2/2] Grading reports with Gemini platform Pointwise Rubric Autoraters...")
+    eval_runner = GeminiEvalRunner(
         traces_path=evalset_path,
         rubric_file_path=args.rubrics_file,
         judge_model_sampling_count=1,
         target_criterion_ids=evaluated_criteria,
     )
-    geap_runner.execute_cloud_evaluation(
+    eval_runner.execute_cloud_evaluation(
         k_passes=1,
         experiment_name="halloween-hillclimb",
         fast_mode=args.fast,
     )
 
-    output_json_path = os.path.join(run_dir, f"geap_calls_and_responses_{run_name}.json")
-    saved_file = geap_runner.assemble_and_save_records(output_json_path)
+    output_json_path = os.path.join(run_dir, f"eval_calls_and_responses_{run_name}.json")
+    saved_file = eval_runner.assemble_and_save_records(output_json_path)
 
     with open(saved_file, "r", encoding="utf-8") as f:
         records = json.load(f)

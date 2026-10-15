@@ -54,7 +54,9 @@ def print_explanations_for_criterion(
             p_label = row["pass_idx"].replace("pass-", "p")
             score = row["score"]
             explanation = row["explanation"]
-            if not is_nan(score) and score <= score_threshold:
+            if is_nan(score):
+                print(f"  ⚠️  [{p_label}] Score: N/A (Evaluation missing or failed)")
+            elif score <= score_threshold:
                 print(f"  ❌ [{p_label}] Score: {score:.1f} / 5.0")
                 print(f"     Judge Rationale: {explanation}")
             else:

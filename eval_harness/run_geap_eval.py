@@ -160,13 +160,17 @@ class GeapEvalRunner:
             data = json.load(f)
 
         records = []
-        for case in data.get("eval_cases", []):
+        cases = data.get("eval_cases") or data.get("evalCases") or []
+        for case in cases:
             eval_id = str(case.get("evalId") or case.get("eval_id"))
-            try:
-                response = case["conversation"][-1]["finalResponse"]["parts"][0]["text"]
-            except (KeyError, IndexError, TypeError):
+            conv = case.get("conversation") or []
+            if not conv or not isinstance(conv[-1], dict):
                 continue
-            records.append({"eval_id": eval_id, "response": response})
+            final_resp = conv[-1].get("finalResponse") or conv[-1].get("final_response") or {}
+            parts = final_resp.get("parts") or []
+            if not parts or not isinstance(parts[0], dict) or "text" not in parts[0]:
+                continue
+            records.append({"eval_id": eval_id, "response": parts[0]["text"]})
         return records
 
     def _load_criteria(self, rubric_file_path: str) -> List[Dict[str, Any]]:

@@ -110,6 +110,12 @@ def review_session(
     llm_res = _call_gemini_json(prompt, fast_mode=fast_mode)
     if llm_res and "failed_questions" in llm_res:
         llm_res["prompt_sent_to_aqua_reviewer"] = prompt
+        llm_res.setdefault("session_id", session.get("session_id"))
+        llm_res.setdefault("house_id", session.get("house_id"))
+        llm_res.setdefault("http_status", session.get("http_status", 200))
+        llm_res.setdefault("error_logged", session.get("error_logged"))
+        llm_res.setdefault("cluster_scale_weight", session.get("cluster_scale_weight", 1))
+        llm_res.setdefault("passed", len(llm_res["failed_questions"]) == 0)
         return llm_res
 
     # Deterministic transcript analysis matching AQuA's 9-question rubric on the real session JSON

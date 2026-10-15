@@ -177,8 +177,9 @@ def build_candy_evalset(
 
             # Verify all cases produced a final response; fall back per-case if capacity/auth failed
             eval_set_dict = EvalSet(eval_set_id=eval_set_id, eval_cases=cases).model_dump(by_alias=True)
-            for case_obj in eval_set_dict["eval_cases"]:
-                hid = case_obj["evalId"]
+            cases_list = eval_set_dict.get("eval_cases") or eval_set_dict.get("evalCases") or []
+            for case_obj in cases_list:
+                hid = case_obj.get("evalId") or case_obj.get("eval_id")
                 conv = case_obj.get("conversation") or []
                 has_text = False
                 if conv and isinstance(conv[-1], dict):

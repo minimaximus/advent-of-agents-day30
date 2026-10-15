@@ -32,8 +32,8 @@ playground: ## Launch ADK Web UI to chat with candy_auditor and inspect EvalSet 
 	adk web
 
 clean: ## Remove generated runs and reset skills to regressed baseline
-	rm -rf runs/hillclimb_* candy_auditor/hillclimb_*.evalset.json
 	python3 -m eval_harness.lab_skills reset
+	rm -rf runs candy_auditor/hillclimb_*.evalset.json candy_auditor/__pycache__ candy_auditor/tools/__pycache__ eval_harness/__pycache__
 
 # Legacy aliases kept for backwards compatibility
 hillclimb-fix: fix

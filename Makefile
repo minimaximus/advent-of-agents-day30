@@ -2,9 +2,7 @@
 export GOOGLE_API_USE_CLIENT_CERTIFICATE := false
 export GOOGLE_API_USE_MTLS := never
 
-CRITERION ?= sugar-enthusiasm
-
-.PHONY: help eval kata explain fix reset aqua dry-run playground clean seed check-rubrics check-single hillclimb-fix hillclimb-reset
+.PHONY: help eval kata explain fix reset aqua dry-run playground clean hillclimb-fix hillclimb-reset
 
 help: ## Show available Halloween Continuous Alignment & AQuA Kata targets
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-18s\033[0m %s\n", $$1, $$2}'
@@ -27,7 +25,7 @@ reset: ## Reset SKILL.md files back to the regressed baseline (for re-recording)
 aqua: ## Act III (Post-Deploy Continuous Alignment): Run AQuA 9-question session review, cluster verification & RCA
 	python3 -m eval_harness.run_aqua
 
-dry-run: ## Preview the compiled GEAP PointwiseMetricPromptTemplate sent to the LLM Judge
+dry-run: ## Preview the compiled PointwiseMetricPromptTemplate sent to the LLM Judge
 	python3 -m eval_harness.run_geap_eval --dry-run --out runs/dry_run/geap_prompt_preview.json
 
 playground: ## Launch ADK Web UI to chat with candy_auditor and inspect EvalSet traces
@@ -40,9 +38,3 @@ clean: ## Remove generated runs and reset skills to regressed baseline
 # Legacy aliases kept for backwards compatibility
 hillclimb-fix: fix
 hillclimb-reset: reset
-seed:
-	python3 -m eval_harness.seed_reliability_data
-check-rubrics: seed
-	python3 -m eval_harness.all_criteria_analysis --run_geap_eval_out runs/reliability_study.json
-check-single: seed
-	python3 -m eval_harness.single_criterion_analysis --run_geap_eval_out runs/reliability_study.json --criterion $(CRITERION)

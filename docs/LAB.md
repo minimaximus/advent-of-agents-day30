@@ -1,7 +1,7 @@
 # The Lab: Continuous Alignment with Golden-Dataset Policy Evals & AQuA 🎃🌊
 
 This walkthrough takes under five minutes. You will verify **Layer 5: Continuous Alignment** across both pre-deploy and post-deploy stages:
-1. **Pre-Deploy Regression Testing (Shift-Left)**: Run an automated **Golden-Dataset Policy Pipeline** in GEAP to catch a prompt regression where the agent passes the vibe check (`5.00/5.0`) while violating pricing and allergen safety policies (`1.33` & `1.00`), inspect the Gemini Judge's rationales, and restore policy compliance in `SKILL.md`.
+1. **Pre-Deploy Regression Testing (Shift-Left)**: Run an automated **Golden-Dataset Policy Pipeline** on the Gemini Agent Platform to catch a prompt regression where the agent passes the vibe check (`5.00/5.0`) while violating pricing and allergen safety policies (`1.33` & `1.00`), inspect the Gemini Judge's rationales, and restore policy compliance in `SKILL.md`.
 2. **Post-Deploy Continuous Alignment (Shift-Right)**: Run **AQuA (Ambient Quality Agent)** (`make aqua`, [`eval_harness/run_aqua.py`](../eval_harness/run_aqua.py)) on recorded Halloween production transcripts ([`eval_harness/prod_sessions.json`](../eval_harness/prod_sessions.json)) to see how AQuA's **9-question compliance checklist**, **transcript verifier**, **code-anchored root cause analysis**, and **14-day resolution clock** catch silent compliance failures that never appear in error logs.
 
 ---
@@ -44,7 +44,7 @@ Notice why a casual spot-check would have failed us: `spooky-vibe` is a perfect 
 
 ## Step 2: Diagnose the Compliance Breach with Judge Rationales (`make explain`)
 
-Inspect the explanations returned by the GEAP Gemini Judge for any house scoring `<= 4.0`:
+Inspect the explanations returned by the Gemini Agent Platform Judge (gemini-3.8-flash) for any house scoring `<= 4.0`:
 
 ```bash
 make explain

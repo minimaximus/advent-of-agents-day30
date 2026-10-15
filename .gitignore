@@ -22,9 +22,14 @@ ENV/
 *.swo
 
 # Evaluation output artifacts & temporary runs
-runs/hillclimb_*
-runs/aqua_report.json
+runs/
 candy_auditor/hillclimb_*.evalset.json
+
+# Legacy non-kata reliability study scripts
+eval_harness/all_criteria_analysis.py
+eval_harness/single_criterion_analysis.py
+eval_harness/seed_reliability_data.py
+eval_harness/metrics_calc.py
 
 # Upstream archives
 autoraters.zip
@@ -33,13 +38,13 @@ advent-of-agents-main/
 # Internal presenter scripts, slide decks, and authoring notes
 docs/KATA_SCRIPT.md
 docs/video-script.md
-docs/slides.html
+docs/*.html
 docs/slides.md
 docs/*.png
 docs/*.jpg
-docs/architecture.html
 docs/*.pptx
 docs/generate_slides_pptx.py
+docs/upload_to_drive.py
 evals-lab.txt
 .agent/
 

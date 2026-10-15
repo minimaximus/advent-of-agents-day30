@@ -78,20 +78,16 @@ def _call_gemini_json(prompt: str, fast_mode: bool = False) -> Optional[Dict[str
             client = genai.Client(api_key=api_key)
 
         preferred_model = os.environ.get("MODEL", "gemini-3.8-flash")
-        for candidate_model in [preferred_model, "gemini-2.5-flash"]:
-            try:
-                resp = client.models.generate_content(
-                    model=candidate_model,
-                    contents=prompt,
-                    config=types.GenerateContentConfig(
-                        response_mime_type="application/json",
-                        temperature=0.0,
-                    ),
-                )
-                if resp and resp.text:
-                    return json.loads(resp.text)
-            except Exception:
-                continue
+        resp = client.models.generate_content(
+            model=preferred_model,
+            contents=prompt,
+            config=types.GenerateContentConfig(
+                response_mime_type="application/json",
+                temperature=0.0,
+            ),
+        )
+        if resp and resp.text:
+            return json.loads(resp.text)
     except Exception:
         pass
     return None

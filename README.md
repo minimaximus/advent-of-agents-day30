@@ -3,7 +3,7 @@
 An ADK agent (`candy_auditor`) audits neighborhood Trick-or-Treat houses (`HOUSE-1031`, `HOUSE-666`, `HOUSE-404`) using modular skills (`SkillToolset`) and lookup tools, generating an **Official Trick-or-Treat House Audit Memorandum**.
 
 This **Layer 5 (Regression Testing & Continuous Alignment)** Kata answers the two questions every team faces when shipping AI agents to production:
-1. **Pre-Deploy Regression Testing (Shift-Left)**: *"How do we verify that updated models or system prompts comply with our established policies before shipping updates?"* → Run automated **Golden-Dataset Policy Evaluation Pipelines** in **Gemini Enterprise Agent Platform** (`make kata` / `make eval`, `make explain`, `make fix`).
+1. **Pre-Deploy Regression Testing (Shift-Left)**: *"How do we verify that updated models or system prompts comply with our established policies before shipping updates?"* → Run automated **Golden-Dataset Policy Evaluation Pipelines** for **Gemini Agent** (`make kata` / `make eval`, `make explain`, `make fix`).
 2. **Post-Deploy Continuous Alignment (Shift-Right)**: *"Your agent served 1,240 conversations yesterday. How do we verify that the agent adhered to all compliance and rules in production?"* → Run **AQuA (Ambient Quality Agent)** (`make aqua`, [`eval_harness/run_aqua.py`](eval_harness/run_aqua.py)) against recorded production transcripts ([`eval_harness/prod_sessions.json`](eval_harness/prod_sessions.json)) to review sampled sessions against a **9-question compliance checklist**, verify clusters against real transcripts, diagnose root causes in [`candy_auditor/agent.py`](candy_auditor/agent.py), and track **14-day regression resolution**.
 
 ---
@@ -55,7 +55,7 @@ make aqua
 ```text
 candy_auditor/              ADK Agent (`agent.py`), tools (`bowl_tool.py`, `preference_tool.py`), and `skills/`
 tools_data/                 Halloween porch dataset (`houses.json`) and Guild trade index (`trade_values.json`)
-eval_harness/               Gemini Agent Platform Golden-Dataset Gate (`run_hillclimb.py`), Judge rationales (`explain_criteria_results.py`), and AQuA runner (`run_aqua.py`)
+eval_harness/               Gemini Agent Golden-Dataset Gate (`run_hillclimb.py`), Judge rationales (`explain_criteria_results.py`), and AQuA runner (`run_aqua.py`)
 docs/LAB.md                 Step-by-step walkthrough of Pre-Deploy Golden Evals + Post-Deploy AQuA
 ```
 

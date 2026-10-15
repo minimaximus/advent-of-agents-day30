@@ -1,7 +1,7 @@
 """Hill-Climbing Evaluation & Build Gate Runner (`make eval` / `make hillclimb`).
 
 Runs the `candy_auditor` ADK agent across the target Halloween houses, grades the reports
-using Gemini platform Pointwise Rubric Autoraters, prints a unified Build Gate Scorecard table
+using Gemini Agent Pointwise Rubric Autoraters, prints a unified Build Gate Scorecard table
 (comparing Fluff/Trap criteria vs. Reliable Target criteria), and enforces Mean >= 4.0.
 """
 
@@ -31,7 +31,7 @@ def get_next_run_dir(runs_dir: str, base_name: str = "hillclimb") -> str:
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Run Halloween Candy Bowl Auditor Hill-Climbing & Gemini platform Gate."
+        description="Run Halloween Candy Bowl Auditor Hill-Climbing & Gemini Agent Gate."
     )
     parser.add_argument("--houses-file", default="eval_harness/hillclimb_houses.txt")
     parser.add_argument("--rubrics-file", default="eval_harness/rubrics.json")
@@ -70,7 +70,7 @@ def main() -> None:
     ]
     gated_criteria = ["cost-per-treat", "neighboring-allergen-risk"]
 
-    print(f"\n☁️  [2/2] Grading reports with Gemini platform Pointwise Rubric Autoraters...")
+    print(f"\n☁️  [2/2] Grading reports with Gemini Agent Pointwise Rubric Autoraters...")
     eval_runner = GeminiEvalRunner(
         traces_path=evalset_path,
         rubric_file_path=args.rubrics_file,

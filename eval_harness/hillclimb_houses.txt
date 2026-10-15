@@ -1,4 +1,4 @@
-# Target Halloween houses for fast live Gemini platform Hill-Climbing
+# Target Halloween houses for fast live Gemini Agent Hill-Climbing
 HOUSE-1031
 HOUSE-666
 HOUSE-404

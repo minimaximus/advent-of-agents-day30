@@ -41,6 +41,7 @@ docs/video-script.md
 docs/*.html
 docs/slides.md
 docs/*.png
+!docs/s3-day30-continuous-alignment.png
 docs/*.jpg
 docs/*.pptx
 docs/generate_slides_pptx.py

@@ -8,6 +8,12 @@ This **Layer 5 (Regression Testing & Continuous Alignment)** Kata answers the tw
 
 ---
 
+## Architecture
+
+![Gemini ADK Continuous Alignment Architecture](docs/s3-day30-continuous-alignment.png)
+
+---
+
 ## Core Concepts
 
 - **The Vibe-Check Trap**: When a model or prompt update makes an agent "more concise," tone and formatting metrics (`spooky-vibe: 5.0/5.0`) stay green and no Python errors are logged—even when the agent silently drops a mandatory pricing formula or allergen cross-contact warning.

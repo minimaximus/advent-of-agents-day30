@@ -63,7 +63,8 @@ docs/LAB.md                 Step-by-step walkthrough of Pre-Deploy Golden Evals 
 
 ## Resources
 
-- [AQuA: An Ambient Quality Agent That Diagnoses Your Production Agent](https://developers.googleblog.com/the-outer-loop-insights-first-an-ambient-quality-agent-that-diagnoses-your-production-agent/)
-- [Vertex AI GenAI Evaluation Service](https://cloud.google.com/vertex-ai/generative-ai/docs/models/evaluation-overview)
-- [ADK Documentation (`adk.dev`)](https://adk.dev/)
+- [AQuA: An Ambient Quality Agent That Diagnoses Your Production Agent](https://g.dev/cloud/adventofagents-season3-blog-aqua-ambient-quality-agent)
+- [Gemini Platform Evaluation Service](https://g.dev/cloud/adventofagents-season3-docs-genai-evaluation-overview)
+- [ADK Documentation and SkillToolset Guide](https://g.dev/cloud/adventofagents-season3-docs-adk)
+- [Agent Starter Pack Templates](https://g.dev/cloud/adventofagents-season3-agent-starter-pack)
 

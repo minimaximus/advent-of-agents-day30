@@ -1,7 +1,7 @@
 """Executable AQuA (Ambient Quality Agent) Post-Deploy Continuous Alignment Runner (`make aqua`).
 
-Runs a 3-stage Ambient Quality Agent (AQuA) pipeline built on public `google-genai` / `google-adk`
-against recorded production transcripts (`eval_harness/prod_sessions.json`) and the deployed
+Runs a 3-stage Ambient Quality Agent (AQuA) pipeline built on public ADK and Gemini Agent
+APIs against recorded production transcripts (`eval_harness/prod_sessions.json`) and the deployed
 agent source snapshot (`candy_auditor/agent.py`):
 
 1. Stage 1 — 9-Question Session Compliance Review:

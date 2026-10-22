@@ -1,10 +1,10 @@
 """Gemini Agent Evaluation Runner for the Halloween Candy Bowl Auditor Kata.
 
-Bridges ADK EvalSet traces (`candy_auditor/*.evalset.json`) and Vertex AI's GenAI
+Bridges ADK EvalSet traces (`candy_auditor/*.evalset.json`) and Gemini Platform
 Evaluation Service (`EvalTask`, `PointwiseMetric`, `PointwiseMetricPromptTemplate`).
 Supports `--dry-run` (to inspect compiled Gemini Agent judge prompts), live cloud `EvalTask`
 execution, and automatic local rubric grading fallback when running in `--fast` mode
-or without active Vertex AI cloud credentials.
+or without active Google Cloud credentials.
 """
 
 import argparse
@@ -135,7 +135,7 @@ def _grade_response_locally(eval_id: str, criterion_id: str, response_text: str)
 
 
 class GeminiEvalRunner:
-    """Orchestrates Vertex AI GenAI Evaluation Service (Gemini Agent) calls for ADK evaluation traces."""
+    """Orchestrates Gemini Platform Evaluation Service (Gemini Agent) calls for ADK evaluation traces."""
 
     def __init__(
         self,
@@ -199,7 +199,7 @@ class GeminiEvalRunner:
         location: str = "us-central1",
         fast_mode: bool = False,
     ) -> None:
-        """Executes k_passes of evaluation via Vertex AI Gemini Agent EvalTask (or fast local rubric judge)."""
+        """Executes k_passes of evaluation via Gemini Platform Evaluation Service EvalTask (or fast local rubric judge)."""
         project_id = project or os.environ.get("GOOGLE_CLOUD_PROJECT")
         use_cloud = (not fast_mode) and bool(project_id)
 
